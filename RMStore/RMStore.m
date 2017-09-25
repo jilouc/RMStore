@@ -440,6 +440,15 @@ typedef void (^RMStoreSuccessBlock)();
     }
 }
 
+- (BOOL)paymentQueue:(SKPaymentQueue *)queue shouldAddStorePayment:(SKPayment *)payment forProduct:(SKProduct *)product NS_AVAILABLE_IOS(11_0)
+{
+    if (self.shouldAddStorePaymentHandler != nil) {
+        return self.shouldAddStorePaymentHandler(payment, product);
+    }
+
+    return NO;
+}
+
 #pragma mark Download State
 
 - (void)didCancelDownload:(SKDownload*)download queue:(SKPaymentQueue*)queue

@@ -31,6 +31,8 @@ extern NSInteger const RMStoreErrorCodeDownloadCanceled;
 extern NSInteger const RMStoreErrorCodeUnknownProductIdentifier;
 extern NSInteger const RMStoreErrorCodeUnableToCompleteVerification;
 
+typedef BOOL (^RMStoreShouldAddStorePaymentHandler)(SKPayment *payment, SKProduct *product);
+
 /** A StoreKit wrapper that adds blocks and notifications, plus optional receipt verification and purchase management.
  */
 @interface RMStore : NSObject<SKPaymentTransactionObserver>
@@ -158,6 +160,7 @@ extern NSInteger const RMStoreErrorCodeUnableToCompleteVerification;
  */
 @property (nonatomic, weak) id<RMStoreTransactionPersistor> transactionPersistor;
 
+@property (nonatomic, copy) RMStoreShouldAddStorePaymentHandler shouldAddStorePaymentHandler;
 
 #pragma mark Product management
 ///---------------------------------------------
