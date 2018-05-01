@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.default_subspec = 'Core', 'AppReceiptVerifier'
   s.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/Headers/Public/OpenSSL\"" }
+  s.static_framework = true
 
   s.subspec 'Core' do |core|
     core.source_files = 'RMStore/*.{h,m}'
@@ -32,7 +33,7 @@ Pod::Spec.new do |s|
     arv.dependency 'RMStore/Core'
     arv.platform = :ios, '7.0'
     arv.source_files = 'RMStore/Optional/RMStoreAppReceiptVerifier.{h,m}', 'RMStore/Optional/RMAppReceipt.{h,m}'
-    arv.dependency 'OpenSSL-Universal', '~> 1.0'
+    arv.dependency 'OpenSSL', '~> 1.0'
   end
 
   s.subspec 'TransactionReceiptVerifier' do |trv|
