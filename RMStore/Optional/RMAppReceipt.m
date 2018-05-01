@@ -117,17 +117,17 @@ static NSURL *_appleRootCertificateURL = nil;
             switch (type)
             {
                 case RMAppReceiptASN1TypeBundleIdentifier:
-                    _bundleIdentifierData = data;
-                    _bundleIdentifier = RMASN1ReadUTF8String(&s, length);
+                    self->_bundleIdentifierData = data;
+                    self->_bundleIdentifier = RMASN1ReadUTF8String(&s, length);
                     break;
                 case RMAppReceiptASN1TypeAppVersion:
-                    _appVersion = RMASN1ReadUTF8String(&s, length);
+                    self->_appVersion = RMASN1ReadUTF8String(&s, length);
                     break;
                 case RMAppReceiptASN1TypeOpaqueValue:
-                    _opaqueValue = data;
+                    self->_opaqueValue = data;
                     break;
                 case RMAppReceiptASN1TypeHash:
-                    _receiptHash = data;
+                    self->_receiptHash = data;
                     break;
                 case RMAppReceiptASN1TypeInAppPurchaseReceipt:
                 {
@@ -136,12 +136,12 @@ static NSURL *_appleRootCertificateURL = nil;
                     break;
                 }
                 case RMAppReceiptASN1TypeOriginalAppVersion:
-                    _originalAppVersion = RMASN1ReadUTF8String(&s, length);
+                    self->_originalAppVersion = RMASN1ReadUTF8String(&s, length);
                     break;
                 case RMAppReceiptASN1TypeExpirationDate:
                 {
                     NSString *string = RMASN1ReadIA5SString(&s, length);
-                    _expirationDate = [RMAppReceipt formatRFC3339String:string];
+                    self->_expirationDate = [RMAppReceipt formatRFC3339String:string];
                     break;
                 }
             }
