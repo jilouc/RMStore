@@ -11,7 +11,6 @@ Pod::Spec.new do |s|
   s.frameworks = 'StoreKit'
   s.requires_arc = true
   s.default_subspec = 'Core', 'AppReceiptVerifier'
-  s.static_framework = true
   s.pod_target_xcconfig  = { "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/Headers/Public/OpenSSL\"" }
 
   s.subspec 'Core' do |core|
