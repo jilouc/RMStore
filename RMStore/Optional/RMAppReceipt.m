@@ -43,6 +43,7 @@ NSInteger const RMAppReceiptASN1TypeOriginalPurchaseDate = 1706;
 NSInteger const RMAppReceiptASN1TypeSubscriptionExpirationDate = 1708;
 NSInteger const RMAppReceiptASN1TypeWebOrderLineItemID = 1711;
 NSInteger const RMAppReceiptASN1TypeCancellationDate = 1712;
+NSInteger const RMAppReceiptASN1TypeSubscriptionIntroductoryPricePeriod = 1719;
 
 #pragma mark - ANS1
 
@@ -372,6 +373,11 @@ static NSURL *_appleRootCertificateURL = nil;
                 {
                     NSString *string = RMASN1ReadIA5SString(&p, length);
                     self->_cancellationDate = [RMAppReceipt formatRFC3339String:string];
+                    break;
+                }
+                case RMAppReceiptASN1TypeSubscriptionIntroductoryPricePeriod: {
+                    NSString *string = RMASN1ReadUTF8String(&p, length);
+                    self->_subscriptionIntroductoryPricePeriod = [string isEqualToString:@"true"];
                     break;
                 }
             }
