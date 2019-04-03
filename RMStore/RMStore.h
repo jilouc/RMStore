@@ -80,6 +80,15 @@ typedef BOOL (^RMStoreShouldAddStorePaymentHandler)(SKPayment *payment, SKProduc
            success:(void (^)(SKPaymentTransaction *transaction))successBlock
            failure:(void (^)(SKPaymentTransaction *transaction, NSError *error))failureBlock __attribute__((availability(ios,introduced=7.0)));
 
+/** Request the given payment. `successBlock` will be called if the payment is successful, `failureBlock` if it isn't.
+ @param payment Payment object.
+ @param successBlock The block to be called if the payment is sucessful. Can be `nil`.
+ @param failureBlock The block to be called if the payment fails or there isn't any product with the given identifier. Can be `nil`.
+ */
+- (void)addStorePayment:(SKPayment *)payment
+                success:(void (^)(SKPaymentTransaction *transaction))successBlock
+                failure:(void (^)(SKPaymentTransaction *transaction, NSError *error))failureBlock;
+
 /** Request localized information about a set of products from the Apple App Store.
  @param identifiers The set of product identifiers for the products you wish to retrieve information of.
  */
